@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
- 
-app.get('/', (req, res) => {
-  res.send("Hello and welcome to the web server Anana");
-});
+const routes = require('./routes/lesson1route');
+
+app.use('/', routes);
+app.use('/fabian', routes);
 
 const port = 3000;
 app.listen(process.env.PORT || port, () => {

@@ -6,15 +6,18 @@ const bodyParser = require("body-parser");
 const routes = require("./routes/index");
 const userRoutes = require("./routes/users");
 const templesRoutes = require("./routes/temples");
-const { swaggerUi, swaggerSpec } = require("./swagger");
+const swaggerUi = require("swagger-ui-express");
+const fs = require("fs");
+const path = require("path");
 
 const port = process.env.PORT || 3000;
 
 // Middleware to parse JSON request bodies
 app.use(bodyParser.json());
 
-// Swagger setup
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// Serve Swagger JSON
+const swaggerDocument = JSON.parse(fs.readFileSync(path.join(__dirname, "swagger.json"), "utf-8"));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Routes
 app.use("/", routes);
@@ -28,9 +31,7 @@ mongodb.initDb((err) => {
   } else {
     app.listen(port, () => {
       console.log(`Web Server is listening at port ${port}`);
-      console.log(
-        `Swagger Docs available at http://localhost:${port}/api-docs`
-      );
+      console.log(`Swagger Docs available at http://localhost:${port}/api-docs`);
     });
   }
 });

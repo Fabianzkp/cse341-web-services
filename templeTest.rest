@@ -1,0 +1,32 @@
+### Get all temples
+GET http://localhost:3000/temples
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+### Get a specific temple by ID
+GET http://localhost:3000/temples/4
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+### Add a new temple
+POST http://localhost:3000/temples
+Content-Type: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+{
+  "name": "New Temple",
+  "location": "New Location"
+}
+
+### Update a temple by ID
+PUT http://localhost:3000/temples/{temple_id}
+Content-Type: application/json
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N
+
+{
+  "name": "Updated Temple Name",
+  "location": "Updated Location",
+  "dedicated": "2025-03-17"
+}
+
+### Delete a temple by ID
+DELETE http://localhost:3000/temples/1
+apiKey: Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N

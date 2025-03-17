@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const templeSchema = new mongoose.Schema(
   {
@@ -11,6 +11,6 @@ const templeSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Temple = mongoose.model('Temple', templeSchema);
+const Temple = mongoose.model("Temple", templeSchema);
 
 module.exports = Temple;

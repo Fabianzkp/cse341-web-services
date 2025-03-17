@@ -1,11 +1,12 @@
-const mongodb = require('../data/database');
-const ObjectId = require('mongodb').ObjectId;
+const mongodb = require("../data/database");
+const ObjectId = require("mongodb").ObjectId;
 
-const apiKey = 'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N';
+const apiKey =
+  "Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N";
 
 exports.create = async (req, res) => {
   if (!req.body.name) {
-    res.status(400).send({ message: 'Content can not be empty!' });
+    res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
 
@@ -18,46 +19,69 @@ exports.create = async (req, res) => {
 
   try {
     const db = mongodb.getDatabase();
-    const result = await db.collection('temples').insertOne(temple);
+    const result = await db.collection("temples").insertOne(temple);
     res.status(201).json(result);
   } catch (err) {
-    res.status(500).json({ message: 'Some error occurred while creating the Temple.', error: err.message });
+    res
+      .status(500)
+      .json({
+        message: "Some error occurred while creating the Temple.",
+        error: err.message,
+      });
   }
 };
 
 exports.findAll = async (req, res) => {
-  console.log(req.header('apiKey'));
-  if (req.header('apiKey') === apiKey) {
+  console.log(req.header("apiKey"));
+  if (req.header("apiKey") === apiKey) {
     try {
       const db = mongodb.getDatabase();
-      const temples = await db.collection('temples').find({}).toArray();
+      const temples = await db.collection("temples").find({}).toArray();
       res.status(200).json(temples);
     } catch (err) {
-      res.status(500).json({ message: 'Some error occurred while retrieving temples.', error: err.message });
+      res
+        .status(500)
+        .json({
+          message: "Some error occurred while retrieving temples.",
+          error: err.message,
+        });
     }
   } else {
-    res.status(403).json({ message: 'Invalid apiKey, please read the documentation.' });
+    res
+      .status(403)
+      .json({ message: "Invalid apiKey, please read the documentation." });
   }
 };
 
 exports.findOne = async (req, res) => {
   const temple_id = parseInt(req.params.temple_id, 10); // Convert to number
   console.log(`Searching for temple with id: ${temple_id}`); // Log the temple_id
-  if (req.header('apiKey') === apiKey) {
+  if (req.header("apiKey") === apiKey) {
     try {
       const db = mongodb.getDatabase();
-      const temple = await db.collection('temples').findOne({ temple_id: temple_id });
+      const temple = await db
+        .collection("temples")
+        .findOne({ temple_id: temple_id });
       // console.log(`Query result: ${JSON.stringify(temple)}`); // Log the query result
       if (!temple) {
-        res.status(404).json({ message: 'Not found Temple with id ' + temple_id });
+        res
+          .status(404)
+          .json({ message: "Not found Temple with id " + temple_id });
       } else {
         res.status(200).json(temple);
       }
     } catch (err) {
-      res.status(500).json({ message: 'Error retrieving Temple with temple_id=' + temple_id, error: err.message });
+      res
+        .status(500)
+        .json({
+          message: "Error retrieving Temple with temple_id=" + temple_id,
+          error: err.message,
+        });
     }
   } else {
-    res.status(403).json({ message: 'Invalid apiKey, please read the documentation.' });
+    res
+      .status(403)
+      .json({ message: "Invalid apiKey, please read the documentation." });
   }
 };
 
@@ -66,19 +90,20 @@ exports.update = async (req, res) => {
   console.log(`Updating temple with id: ${templeId}`); // Log the temple_id
   try {
     const db = mongodb.getDatabase();
-    const result = await db.collection('temples').updateOne(
-      { temple_id: templeId },
-      { $set: req.body }
-    );
+    const result = await db
+      .collection("temples")
+      .updateOne({ temple_id: templeId }, { $set: req.body });
     // console.log(`Update result: ${JSON.stringify(result)}`); // Log the update result
 
     if (result.matchedCount === 0) {
-      res.status(404).json({ message: 'Temple not found' });
+      res.status(404).json({ message: "Temple not found" });
     } else {
-      res.status(200).json({ message: 'Temple updated successfully' });
+      res.status(200).json({ message: "Temple updated successfully" });
     }
   } catch (error) {
-    res.status(500).json({ message: 'Error updating temple', error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error updating temple", error: error.message });
   }
 };
 
@@ -87,16 +112,18 @@ exports.delete = async (req, res) => {
   // console.log(`Deleting temple with id: ${templeId}`); // Log the temple_id
   try {
     const db = mongodb.getDatabase();
-    const result = await db.collection('temples').deleteOne({ temple_id: templeId });
+    const result = await db
+      .collection("temples")
+      .deleteOne({ temple_id: templeId });
     console.log(`Delete result: ${JSON.stringify(result)}`); // Log the delete result
 
     if (result.deletedCount === 0) {
-      res.status(404).json({ message: 'Temple not found' });
+      res.status(404).json({ message: "Temple not found" });
     } else {
-      res.status(200).json({ message: 'Temple successfully deleted' });
+      res.status(200).json({ message: "Temple successfully deleted" });
     }
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error: error.message });
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 };
 

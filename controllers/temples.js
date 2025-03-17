@@ -22,12 +22,10 @@ exports.create = async (req, res) => {
     const result = await db.collection("temples").insertOne(temple);
     res.status(201).json(result);
   } catch (err) {
-    res
-      .status(500)
-      .json({
-        message: "Some error occurred while creating the Temple.",
-        error: err.message,
-      });
+    res.status(500).json({
+      message: "Some error occurred while creating the Temple.",
+      error: err.message,
+    });
   }
 };
 
@@ -39,12 +37,10 @@ exports.findAll = async (req, res) => {
       const temples = await db.collection("temples").find({}).toArray();
       res.status(200).json(temples);
     } catch (err) {
-      res
-        .status(500)
-        .json({
-          message: "Some error occurred while retrieving temples.",
-          error: err.message,
-        });
+      res.status(500).json({
+        message: "Some error occurred while retrieving temples.",
+        error: err.message,
+      });
     }
   } else {
     res
@@ -71,12 +67,10 @@ exports.findOne = async (req, res) => {
         res.status(200).json(temple);
       }
     } catch (err) {
-      res
-        .status(500)
-        .json({
-          message: "Error retrieving Temple with temple_id=" + temple_id,
-          error: err.message,
-        });
+      res.status(500).json({
+        message: "Error retrieving Temple with temple_id=" + temple_id,
+        error: err.message,
+      });
     }
   } else {
     res

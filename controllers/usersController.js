@@ -63,7 +63,9 @@ const updateUser = async (req, res) => {
         .findOne({ email: updateFields.email });
 
       if (existingUser && existingUser._id.toString() !== userId.toString()) {
-        return res.status(400).json({ message: "Duplicate key error: email already exists" });
+        return res
+          .status(400)
+          .json({ message: "Duplicate key error: email already exists" });
       }
     }
 
@@ -81,10 +83,12 @@ const updateUser = async (req, res) => {
     }
   } catch (err) {
     console.error("Error updating user:", err); // Log the error
-    res.status(500).json({ message: "Some error occurred while updating the user", error: err.message });
+    res.status(500).json({
+      message: "Some error occurred while updating the user",
+      error: err.message,
+    });
   }
 };
-
 
 // Delete a user
 const deleteUser = async (req, res) => {

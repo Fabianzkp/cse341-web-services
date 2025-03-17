@@ -16,7 +16,9 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // Serve Swagger JSON
-const swaggerDocument = JSON.parse(fs.readFileSync(path.join(__dirname, "swagger.json"), "utf-8"));
+const swaggerDocument = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "swagger.json"), "utf-8")
+);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Routes
@@ -31,7 +33,9 @@ mongodb.initDb((err) => {
   } else {
     app.listen(port, () => {
       console.log(`Web Server is listening at port ${port}`);
-      console.log(`Swagger Docs available at http://localhost:${port}/api-docs`);
+      console.log(
+        `Swagger Docs available at http://localhost:${port}/api-docs`
+      );
     });
   }
 });

@@ -5,27 +5,27 @@ GET http://localhost:3000/
 GET http://localhost:3000/users
 
 ### Get Single User By Id
-GET http://localhost:3000/users/67d892810ffd1e26a1f99870
+GET http://localhost:3000/users/67d9f1f998ed46d57002faf6
 
 ### Create User
 POST http://localhost:3000/users HTTP/1.1
 Content-Type: application/json
 
 {
-  "firstName": "Princess",
-  "lastName": "King",
+  "firstName": "Bridget",
+  "lastName": "Tomson",
   "email": "princessking@gmail.com",
-  "favoriteColor": "Pink",
+  "favoriteColor": "Red",
   "birthday": "2004-06-17"
 }
 
 ### Update User
-PUT http://localhost:3000/users/67d892810ffd1e26a1f99870 HTTP/1.1
+PUT http://localhost:3000/users/67d9f1f998ed46d57002faf6 HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "princess@gmail.com"
+  "email": "bridget@gmail.com"
 }
 
 ### Delete User
-DELETE http://localhost:3000/users/67d894d7bb59e7cd8b4e1a85
+DELETE http://localhost:3000/users/67d9f1f998ed46d57002faf6

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const userController = require("../controllers/usersController");
+const { userValidationRules, validate } = require("../controllers/validators");
 
 /**
  * @swagger
@@ -70,7 +71,7 @@ router.get("/:id", userController.getSingle);
  *       400:
  *         description: Bad request
  */
-router.post("/", userController.createUser);
+router.post("/", userValidationRules(), validate, userController.createUser);
 
 /**
  * @swagger
@@ -109,7 +110,7 @@ router.post("/", userController.createUser);
  *       404:
  *         description: User not found
  */
-router.put("/:id", userController.updateUser);
+router.put("/:id", userValidationRules(), validate, userController.updateUser);
 
 /**
  * @swagger

@@ -1,5 +1,5 @@
 require("dotenv").config(); // Load environment variables
-const mongodb = require("./data/database");
+const connectDB = require("./data/database");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -27,15 +27,11 @@ app.use("/users", userRoutes);
 app.use("/temples", templesRoutes);
 
 // Connect to the database and start the server
-mongodb.initDb((err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    app.listen(port, () => {
-      console.log(`Web Server is listening at port ${port}`);
-      console.log(
-        `Swagger Docs available at http://localhost:${port}/api-docs`
-      );
-    });
-  }
+connectDB().then(() => {
+  app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+    console.log(`Swagger Docs available at http://localhost:${port}/api-docs`);
+  });
+}).catch(err => {
+  console.error("Failed to connect to the database", err);
 });

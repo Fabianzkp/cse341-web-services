@@ -1,32 +1,14 @@
 require("dotenv").config();
-const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
 
-let database;
-
-const initDb = (callback) => {
-  if (database) {
-    console.log("Database is already initialized");
-    return callback(null, database);
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URL)
+    console.log("MongoDB Connected Successfully");
+  } catch (error) {
+    console.error("MongoDB Connection Failed:", error);
+    process.exit(1); // Exit process on failure
   }
-  MongoClient.connect(process.env.MONGODB_URL)
-    .then((client) => {
-      database = client.db("cse341-project");
-      console.log("Database initialized");
-      callback(null, database);
-    })
-    .catch((err) => {
-      callback(err);
-    });
 };
 
-const getDatabase = () => {
-  if (!database) {
-    throw Error("Database not initialized");
-  }
-  return database;
-};
-
-module.exports = {
-  initDb,
-  getDatabase,
-};
+module.exports = connectDB;

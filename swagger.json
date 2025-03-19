@@ -7,7 +7,12 @@
   },
   "servers": [
     {
-      "url": "https://cse341-web-services-f9t7.onrender.com"
+      "url": "https://cse341-web-services-f9t7.onrender.com",
+      "description": "Production server"
+    },
+    {
+      "url": "http://localhost:3000",
+      "description": "Local server"
     }
   ],
   "components": {

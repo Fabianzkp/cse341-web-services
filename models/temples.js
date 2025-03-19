@@ -11,6 +11,6 @@ const templeSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Temple = mongoose.model("Temple", templeSchema);
+const Temple = mongoose.model("Temple", templeSchema, "Temple"); // Specify the collection name
 
 module.exports = Temple;

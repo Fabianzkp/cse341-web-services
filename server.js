@@ -1,6 +1,7 @@
 require("dotenv").config(); // Load environment variables
 const connectDB = require("./data/database");
 const express = require("express");
+const cors = require("cors"); // Import cors
 const app = express();
 const bodyParser = require("body-parser");
 const routes = require("./routes/index");
@@ -14,6 +15,13 @@ const port = process.env.PORT || 3000;
 
 // Middleware to parse JSON request bodies
 app.use(bodyParser.json());
+
+// Enable CORS
+app.use(cors({
+  origin: ["http://localhost:3000", "https://cse341-web-services-f9t7.onrender.com"],
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization"
+}));
 
 // Serve Swagger JSON
 const swaggerDocument = JSON.parse(

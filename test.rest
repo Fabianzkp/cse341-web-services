@@ -5,7 +5,7 @@ GET http://localhost:3000/
 GET http://localhost:3000/users
 
 ### Get Single User By Id
-GET http://localhost:3000/users/67d9f1f998ed46d57002faf6
+GET http://localhost:3000/users/67d892810ffd1e26a1f99870
 
 ### Create User
 POST http://localhost:3000/users HTTP/1.1
@@ -20,11 +20,11 @@ Content-Type: application/json
 }
 
 ### Update User
-PUT http://localhost:3000/users/67d9f1f998ed46d57002faf6 HTTP/1.1
+PUT http://localhost:3000/users/67dadc231a4a95c90d11754f HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "bridget@gmail.com"
+  "email": "Bridget@gmail.com"
 }
 
 ### Delete User

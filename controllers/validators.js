@@ -2,11 +2,11 @@ const { body, validationResult } = require('express-validator');
 
 const userValidationRules = () => {
   return [
-    body('firstName').notEmpty().withMessage('First name is required'),
-    body('lastName').notEmpty().withMessage('Last name is required'),
-    body('email').isEmail().withMessage('Email is invalid'),
-    body('favoriteColor').notEmpty().withMessage('Favorite color is required'),
-    body('birthday').notEmpty().withMessage('Birthday is required'),
+    body('firstName').optional().notEmpty().withMessage('First name is required'),
+    body('lastName').optional().notEmpty().withMessage('Last name is required'),
+    body('email').optional().isEmail().withMessage('Email is invalid'),
+    body('favoriteColor').optional().notEmpty().withMessage('Favorite color is required'),
+    body('birthday').optional().notEmpty().withMessage('Birthday is required'),
   ];
 };
 

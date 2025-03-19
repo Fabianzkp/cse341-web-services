@@ -12,7 +12,10 @@ const options = {
     },
     servers: [
       {
-        url: process.env.SERVER_URL || "http://localhost:3000", // Use environment variable for server URL
+        url: "http://localhost:3000", // Local server URL
+      },
+      {
+        url: "https://cse341-web-services-f9t7.onrender.com", // Production server URL
       },
     ],
     components: {
